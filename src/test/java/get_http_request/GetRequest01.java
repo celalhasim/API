@@ -18,6 +18,7 @@ public class GetRequest01 {
 
         System.out.println("Status Code : "+response.statusCode());
         System.out.println("Content Type : "+response.contentType());
+        System.out.println("Status Line : "+response.statusLine());
         System.out.println("Test Time : "+response.time());
 
         Assert.assertEquals(200, response.statusCode());
