@@ -20,7 +20,7 @@ public class DummyTestData {
 // }
         HashMap<String , Object> onuncu=new HashMap<>();
         onuncu.put("id", 10);
-        onuncu.put("employee_name", "Sonya Frost");
+        onuncu.put("employee_name", "Airi Satou");
         onuncu.put("employee_salary", 103600);
         onuncu.put("employee_age", 23);
         onuncu.put("profile_image", "");
@@ -57,4 +57,14 @@ public class DummyTestData {
         expectedData.put("message", "Successfully! Record has been added.");
 
     return expectedData;}
+
+    public HashMap<String, Integer> setUpTestData02(){
+        HashMap<String, Integer> expectedData=new HashMap<String, Integer>();
+        expectedData.put("statusCode", 200);
+        expectedData.put("enYuksekMaas", 725000);
+        expectedData.put("enKucukYas", 19);
+        expectedData.put("ikinciYuksekMaas", 675000);
+
+        return expectedData;
+    }
 }

@@ -1,11 +1,16 @@
 package get_http_request.day08;
 
 import base_url.DummyBaseUrl;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import org.junit.Test;
 import test_data.DummyTestData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -31,10 +36,28 @@ Sondan 2. çalışanın maaşının 106450 olduğunu
         spec02.pathParams("1","employees");
         DummyTestData expectedData=new DummyTestData();
         HashMap<String, Object> expectedDataMap=expectedData.setUpTestData();
-        //System.out.println("expectedDataMap = " + expectedDataMap);
+        System.out.println("expectedDataMap = " + expectedDataMap);
 
         Response response=given().accept("application/json").spec(spec02).when().get("/{1}");
-        response.prettyPrint();
+        //response.prettyPrint();
+        HashMap<String , Object> actualDataMap=response.as(HashMap.class);
+        System.out.println("actualDataMap = " + actualDataMap);
+        Assert.assertEquals(expectedDataMap.get("statusCode"), response.getStatusCode());
+        Assert.assertEquals(expectedDataMap.get("ondorduncücalisan"), ((Map)((List)actualDataMap.get("data")).get(13)).get("employee_name"));
+        Assert.assertEquals(expectedDataMap.get("calisansayisi"), ((List)actualDataMap.get("data")).size());
+        int datasize=((List)actualDataMap.get("data")).size();
+        Assert.assertEquals(expectedDataMap.get("sondanucuncucalısanmaası"), ((Map)((List<?>)actualDataMap.get("data")).get(datasize-3)).get("employee_salary"));
+
+        List<Integer> actualYas= new ArrayList<>();
+
+        for (int i = 0; i < datasize; i++) {
+            actualYas.add((Integer) (((Map)((List<?>) actualDataMap.get("data")).get(i)).get("employee_age")));
+        }
+
+        Assert.assertTrue(actualYas.containsAll((List)(expectedDataMap.get("arananyaslar"))));
+
+        Assert.assertEquals(((Map)expectedDataMap.get("onuncucalisan")).get("employee_name"), ((Map)((List<?>) actualDataMap.get("data")).get(9)).get("employee_name"));
+
     }
 
 }
