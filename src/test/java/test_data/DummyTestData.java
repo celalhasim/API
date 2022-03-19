@@ -67,4 +67,28 @@ public class DummyTestData {
 
         return expectedData;
     }
+
+    public HashMap<String, String> setUpRequestBodyNilufer(){
+        HashMap<String, String> requestBody=new HashMap<>();
+        requestBody.put("name", "Ahmet Mehmet");
+        requestBody.put("salary", "100000");
+        requestBody.put("age", "20");
+
+        return requestBody;
+    }
+    public HashMap<String, Object> setupExpectedDataNilüfer(){
+
+      //  HashMap<String, Object> data=new HashMap<>();
+      //  data.put("name", "Ahmet Mehmet");
+      //  data.put("salary", "100000");
+      //  data.put("age", "20");
+
+        HashMap<String, Object> expectedData=new HashMap<>();
+        expectedData.put("statusCode", 200);
+        expectedData.put("status", "success");
+      //  expectedData.put("data", data);
+        expectedData.put("message", "Successfully! Record has been added.");
+
+        return expectedData;
+    }
 }
