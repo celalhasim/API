@@ -53,4 +53,22 @@ public class JsonPlaceHolderTestData {
         return expectedRequest;
     }
 
+    public JSONObject setUpPatchRequestData(){
+        JSONObject expectedRequest= new JSONObject();
+        expectedRequest.put("title","API Calısmalıyım");
+
+        return expectedRequest;
+    }
+
+    public JSONObject setUpPatchExpectedData(){
+        JSONObject expectedData= new JSONObject();
+
+        expectedData.put("userId", 10);
+        expectedData.put("title", "API Calısmalıyım");
+        expectedData.put("completed", true);
+        expectedData.put("id", 198);
+
+        return expectedData;
+    }
+
 }
